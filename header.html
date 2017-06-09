@@ -1,0 +1,89 @@
+<header ng-controller="headerController">
+	<section class="header-top clearfix">
+		<div class="hdr-lang">
+			<a href="#">ENG</a> / <a href="#">DE</a> / <a href="#">NL</a>
+		</div>
+		<div class="hdr-account">
+			<a href="#">Login</a> / <a href="#">Sign Up</a>
+		</div>
+	</section>
+	<section class="header-bottom clearfix">
+		<div class="nav-icon">
+			<a>
+			  <span></span>
+			  <span></span>
+			  <span></span>
+			</a>
+		</div>
+		
+		<div class="logo-center">
+		<a href="#/">
+			<img src="images/logo.jpg" alt="Logo" />
+		</a>
+		</div>
+		
+		<div class="hdr-right">
+			<div class="hdr-search">
+				<a><img src="images/search-icon.jpg" alt="Search" /></a>
+			</div>
+			<div class="hdr-cart">
+				<a id="cartListOpen" class="cartBox"><img id="cartIcon" src="images/cart-icon.jpg" alt="Search" /><span>{{cartProducts.length}}</span></a>
+			</div>
+		</div>
+		<div id="cartItems" class="cart-products">
+			<div class="product-lists-in">
+				<section ng-repeat="item in cartProducts track by $index | limitTo:3" class="product-col clearfix">
+					<div class="prodItem-col product-title">
+						<p>{{item.name}}</p>
+					</div>
+					<div class="prodItem-col product-quantitys">
+						<button ng-click="productMin()" class="minProduct"></button>
+						<input type="text" min="0" ng-model="productQuantity" />
+						<button ng-click="productPlus()" class="plusProduct"></button>
+					</div>
+					<div class="prodItem-col product-colors">
+						<span tital="{{item.color}}" style="background-color:{{item.color}};"></span>
+					</div>
+					<div class="prodItem-col product-sizes">
+						Size: {{item.size}}
+					</div>
+					<div class="prodItem-col product-prices">
+						{{item.price | currency}}
+					</div>
+					<div class="product-remove">
+						<button ng-click="removeProduct($index)" class="removeProduct"></button>
+					</div>
+				</section>
+			</div>
+			<div class="product-price-checkout clearfix">
+				<div ng-show="cartProducts.length<1">
+					Your cart is empty
+				</div>
+				<div  ng-show="cartProducts.length>0">
+					<div class="left-price-tital">
+						<h4>Total</h4>
+						<h1 ng-init="ab = cartTotal">{{ab}}</h1>
+					</div>
+					<div class="right-product-checkout">
+						<button>Checkout</button>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+		
+	</section>
+</header>
+<script>
+	 $(document).ready(function() {
+		$("#cartListOpen").click(function(){
+			$(this).toggleClass('closeList');
+			if($('.cartBox').hasClass('closeList')){
+				$("#cartIcon").attr('src',"images/close-arrow.jpg");
+			}else{
+				$("#cartIcon").attr('src',"images/cart-icon.jpg");
+			}
+			$("#cartItems").slideToggle();
+		})
+	});
+</script>
