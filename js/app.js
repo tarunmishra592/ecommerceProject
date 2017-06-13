@@ -54,7 +54,7 @@ angular
 		}
 		
 	})
-	.directive("toCart", function toCartFun(productsLists, $anchorScroll){
+	.directive("toCart", function toCartFun(productsLists){
 		return{
 			restrict:"E",
 			template:"<a ng-click='addToCart()'>+</a>",
