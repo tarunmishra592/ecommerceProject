@@ -10,8 +10,7 @@ angular
 			controller:"productDetails"
 		})
 		.otherwise({
-			templateUrl:"product-details.html",
-			controller:"productDetails"
+			templateUrl:"product-details.html"
 		})
 	})
 	.controller("headerController", function headerCtrl($scope, productsLists){
@@ -19,13 +18,13 @@ angular
 		$scope.cartProducts = productsLists.allPro;
 		$scope.productQuantity = 1;
 		$scope.productPlus = function(){
-			$scope.productQuantity = $scope.productQuantity + 1;
+			$scope.productQuantity++;
 		}
 		$scope.productMin = function(){
 			if($scope.productQuantity == 1){
 				return;
 			}
-			$scope.productQuantity = $scope.productQuantity -1;
+			$scope.productQuantity--;
 		};
 		$scope.removeProduct = function(i){
 			$scope.cartProducts.pop(i);
@@ -39,10 +38,10 @@ angular
 			colors:["Orange", "Blue", "Gray", "Yellow"],
 			sizes:["S","M","L"],
 			sizeWell:["26", "24", "28"],
-			quantity:1
+			quantity:"1"
 			}
 		];
-		$scope.products =$scope.products[0];
+		$scope.products = $scope.products[0];
 		$scope.colorVal = function(val){
 			$scope.colorval = val;
 		}
