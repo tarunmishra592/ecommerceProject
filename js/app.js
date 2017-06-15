@@ -9,9 +9,7 @@ angular
 			templateUrl:"product-details.html",
 			controller:"productDetails"
 		})
-		.otherwise({
-			templateUrl:"product-details.html"
-		})
+		.otherwise({redirectTo: '/'});
 	})
 	.controller("headerController", function headerCtrl($scope, productsLists){
 		$scope.cartTotal = productsLists.totalPrice;
